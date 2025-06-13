@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  task-api:
+    build: .
+    command: ["./task-api-linux-amd64", "--config", "config.ini"]
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo:7
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=taskdb
+    volumes:
+      - mongo-data:/data/db
+      - ./db/init.js:/docker-entrypoint-initdb.d/init.js:ro
+volumes:
+  mongo-data:
