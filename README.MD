@@ -1,6 +1,6 @@
 # Task-API
 
-## One-shot run
+## Run
 ```bash
     git clone https://github.com/yourname/task-api
     cd task-api
